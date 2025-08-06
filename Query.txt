@@ -1,0 +1,21 @@
+Query:
+
+select
+  ord.Date as order_date,
+  prdc.CategoryName as category_name,
+  prd.ProdName as product_name,
+  prd.Price as price,
+  ord.Quantity as order_quantity,
+  cst.CustomerEmail as customer_email,
+  cst.CustomerCity as customer_city,
+  (prd.Price*ord.Quantity)as total_sales
+from
+  `dataset_intern.customer`as cst
+join
+  `dataset_intern.orders` as ord
+on cst.CustomerID = ord.CustomerID
+join
+  `dataset_intern.product` as prd
+on ord.ProdNumber = prd.ProdNumber
+join `dataset_intern.product_category`as prdc
+on prd.Category = prdc.CategoryID
